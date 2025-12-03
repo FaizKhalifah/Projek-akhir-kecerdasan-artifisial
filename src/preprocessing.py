@@ -8,8 +8,9 @@ class PreProcessing:
 
     def clean_data(self):
         self.df = self.df.replace("?", np.nan)
-        self.df = self.df.apply(pd.to_numeric)
-        self.df = self.df.fillna(self.df.median(numeric_only=True))
+        self.df = self.df.apply(pd.to_numeric, errors='coerce')
+        self.df = self.df.dropna()
+
         print("After cleaning:", self.df.shape)
         return self.df
     
