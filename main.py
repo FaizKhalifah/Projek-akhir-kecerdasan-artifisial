@@ -16,6 +16,7 @@ if __name__ == "__main__":
     # Preprocess data
     preprocessor = PreProcessing(df)
     df_cleaned = preprocessor.clean_data()
+    df_balanced = preprocessor.handle_imbalanced_data()
     X, y = preprocessor.split_features_and_labels()
 
     # Initialize classifiers
