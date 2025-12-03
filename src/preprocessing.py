@@ -13,6 +13,11 @@ class PreProcessing:
         print("After cleaning:", self.df.shape)
         return self.df
     
+    def normalize_data(self):
+        numeric_cols = self.df.select_dtypes(include=[np.number]).columns
+        self.df[numeric_cols] = (self.df[numeric_cols] - self.df[numeric_cols].min()) / (self.df[numeric_cols].max() - self.df[numeric_cols].min())
+        return self.df
+    
     def handle_imbalanced_data(self):
         X = self.df.drop(columns=["defects"])
         y = self.df["defects"].astype(int)
